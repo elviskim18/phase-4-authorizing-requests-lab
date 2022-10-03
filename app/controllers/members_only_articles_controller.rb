@@ -1,6 +1,7 @@
 class MembersOnlyArticlesController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   before_action :authorize
+  
 
   def index
     articles = Article.where(is_member_only: true).includes(:user).order(created_at: :desc)
